@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title>New York Times Article Search</title>
+
+    <!--Bootstap because its nice and responsive-->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <link rel="stylesheet" href="index.css">
+    <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700" rel="stylesheet" type="text/css">
+
+    <!-- Vue because I of the components and updating data to the screen directly-->
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+
+    <!-- Beacause it a very simple tool -->
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>    
+  </head>
+
+  <body>
+
+    <div id="app">
+      <nav class="navbar fixed-top">
+        <div class="container">
+          <div class="row">
+            <!-- Page titel-->
+            <div class="col-12"><h2 class="text-center">Top 10 Topic Box</h2></div>
+            <!-- Search box -->
+            <div class="col-12 centerDiv"><input class="text-dark" v-model.lazy="search" size="35"></div>
+          </div>
+        </div>
+      </nav>
+
+      <section>
+        <div class="container">
+          <div class="row row-grid justify-content-center">
+            <!-- Article component -->
+            <article-item
+              v-for="(item, index) in articles"
+              v-bind:article="item"
+              v-bind:key="index"
+              >
+            </article-item>
+          </div>
+          <!-- Error if no api connection -->
+          <p v-show="errored">We could not connect to the server to get your articles</p>
+        </div>
+      </section>
+
+      <footer>
+        <div class="container">
+          <span class="copyright">Copyright &copy; Top 10 Topic Box</span>
+        </div>
+      </footer>
+    </div>
+    
+    <!-- One javascript file because its just a simple single page application-->
+    <script src="index.js"></script>
+  </body>
+</html>
